@@ -2447,6 +2447,7 @@ class Model implements \ArrayAccess, \Iterator, \Sanitization
 	 * Implementation of ArrayAccess
 	 **************************************************************************/
 
+	#[\ReturnTypeWillChange]
 	public function offsetSet($offset, $value)
 	{
 		try
@@ -2458,17 +2459,17 @@ class Model implements \ArrayAccess, \Iterator, \Sanitization
 			return false;
 		}
 	}
-
+	#[\ReturnTypeWillChange]
 	public function offsetExists($offset)
 	{
 		return $this->__isset($offset);
 	}
-
+	#[\ReturnTypeWillChange]
 	public function offsetUnset($offset)
 	{
 		$this->__unset($offset);
 	}
-
+	#[\ReturnTypeWillChange]
 	public function offsetGet($offset)
 	{
 		try
@@ -2486,28 +2487,28 @@ class Model implements \ArrayAccess, \Iterator, \Sanitization
 	 **************************************************************************/
 
 	protected $_iterable = array();
-
+	#[\ReturnTypeWillChange]
 	public function rewind()
 	{
 		$this->_iterable = array_merge($this->_custom_data, $this->_data, $this->_data_relations);
 		reset($this->_iterable);
 	}
-
+	#[\ReturnTypeWillChange]
 	public function current()
 	{
 		return current($this->_iterable);
 	}
-
+	#[\ReturnTypeWillChange]
 	public function key()
 	{
 		return key($this->_iterable);
 	}
-
+	#[\ReturnTypeWillChange]
 	public function next()
 	{
 		return next($this->_iterable);
 	}
-
+	#[\ReturnTypeWillChange]
 	public function valid()
 	{
 		return key($this->_iterable) !== null;
