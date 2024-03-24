@@ -184,10 +184,12 @@ HELP;
 						@include_once $phpunit_autoload_path;
 
 						// Attempt to load PHUnit.  If it fails, we are done.
+						/*
 						if ( ! $is_phar and ! class_exists('PHPUnit_Framework_TestCase'))
 						{
 							throw new Exception('PHPUnit does not appear to be installed.'.PHP_EOL.PHP_EOL."\tPlease visit https://phpunit.de and install.");
 						}
+						*/
 
 						// Check for a custom phpunit config, but default to the one from core
 						if (is_file(APPPATH.'phpunit.xml'))

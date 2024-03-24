@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"tests\\Test_User::test_get_success":0.476,"tests\\Test_User::test_get_notfound":0}}
+{"version":1,"defects":[],"times":{"tests\\Test_User::test_get_success":0.403,"tests\\Test_User::test_get_notfound":0}}
