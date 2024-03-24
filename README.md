@@ -1,8 +1,9 @@
+テックブログ記載用の動作テスト環境
+
 composer インストール
 
 ```
-docker-compose run --rm composer81 composer install
-docker-compose run --rm composer72 composer install
+docker-compose run --rm composer composer install
 ```
 
 テスト実行
@@ -14,9 +15,10 @@ docker-compose run --rm php php ./vendor/bin/phpunit src/test/EventScheduler_Tes
 fuelの環境構築
 
 ```
-docker-compose run --rm fuelcomposer composer install
+docker-compose run --rm fuelcomposer72 composer install
+docker-compose run --rm fuelcomposer81 composer install
 docker-compose up -d fuel81
-docker-compose up -d fuel73
+docker-compose up -d fuel72
 docker exec -it mockery_mysql_1 bash
 mysql -u user -ppassword -D db
 ```
