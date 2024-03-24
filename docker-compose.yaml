@@ -1,0 +1,63 @@
+version: '3.8'
+services:
+  php:
+    image: php:8.1-cli
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["php", "-a"]
+  composer:
+    image: composer:latest
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["install"]
+  fuel81:
+    container_name: mockery_fuel81_1
+    build:
+      context: .
+      dockerfile: Dockerfile_fuel81
+    volumes:
+      - ./fuel81:/var/www/
+      - ./fuelapp:/var/www/fuel/app
+    working_dir: /var/www
+    depends_on:
+      - mysql
+    command: ["tail", "-F", "/dev/null"]
+  fuel72:
+    container_name: mockery_fuel72_1
+    build:
+      context: .
+      dockerfile: Dockerfile_fuel72
+    volumes:
+      - ./fuel72:/var/www/
+      - ./fuelapp:/var/www/fuel/app
+    working_dir: /var/www
+    depends_on:
+      - mysql
+    command: ["tail", "-F", "/dev/null"]
+  fuelcomposer72:
+    image: composer:lts
+    volumes:
+      - ./fuel72:/var/www/
+      - ./fuelapp:/var/www/fuel/app
+    working_dir: /var/www
+    command: ["install"]
+  fuelcomposer81:
+    image: composer:lts
+    volumes:
+      - ./fuel81:/var/www/
+      - ./fuelapp:/var/www/fuel/app
+    working_dir: /var/www
+    command: ["install"]
+  mysql:
+    image: mysql:8.0.27
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
